@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewsport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style type="text/css">
+        .clr{
+            font-weight: 300;
+            color: white;
+        }
+        .exo-2 {
+            font-family: "Exo 2", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
+          }
+         .outer{
+            height: 190px;
+            width: 380px;
+            border: black 1px dotted;
+            margin: 10px auto;
+            background-color: rgb(43, 42, 42);
+         }
+         .inner{
+            margin: 30px;
+            border: black solid 2px;
+            height: 130px;
+            text-align: center;
+            padding-top: 2px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            color: gray;
+            background-color: rgb(12, 12, 12);
+            
+         }
+         .inner p{
+            color: white;
+         }
+         span{
+            padding: 4px;
+            font-size: small;
+            
+         }
+         button{
+            width: 381px;
+            height: 60px;
+            /* margin-left:auto;
+            margin-right:auto; */
+            margin-top: 300px;
+            border-radius: 4px;
+            border: 0;
+            font-size: larger;
+            background-image: linear-gradient(to right,aqua, black);
+            color: white;
+            cursor: pointer;
+         }
+         p{
+            font-size: xxx-large;
+            margin-top: 19px;
+         }
+          /*next theme*/
+          .abc{
+            height: 190px;
+            width: 380px;
+            margin: 10px auto;
+            background-color: white;
+            border: solid 1px white;
+          }
+          .bca{
+            margin: 30px;
+            border: black solid 2px;
+            height: 130px;
+            text-align: center;
+            padding-top: 2px;
+            box-sizing: border-box;
+            border-radius: 5px;
+            color: gray;
+            background-color: rgb(197, 211, 216);
+            
+         }
+         .cad{
+            color: black;
+         }
+    </style>
+</head>
+<body onload ="clck()" on style="background-color: rgb(211, 227, 233);">
+    <center><button onclick="thme()">Switch Theme</button></center>
+    <div class="outer" id="outer">
+        <div class="inner" id="inner">
+            <span class="wk">MON</span>
+            <span class="wk">TUE</span>
+            <span class="wk">WED</span>
+            <span class="wk">THU</span>
+            <span class="wk">FRI</span>
+            <span class="wk">SAT</span>
+            <span class="wk">SUN</span>
+            <p id="taim" class="exo-2"></p>
+        </div>
+    </div>
+    <script type="text/javascript" >
+        function thme(){
+            var n1=document.getElementById('outer').getAttribute('class')
+            var n2=document.getElementById('inner').getAttribute('class')
+            var n3=document.getElementById('taim').getAttribute('class')
+
+            if (n1=="outer" && n2=="inner"){
+            document.getElementById('outer').setAttribute('class', 'abc')
+            document.getElementById('inner').setAttribute('class', 'bca')
+            document.getElementById('taim').setAttribute('class', 'cad')
+            }
+            else{
+                document.getElementById('outer').setAttribute('class','outer')
+                document.getElementById('inner').setAttribute('class','inner')
+                document.getElementById('taim').setAttribute('class','exo-2')
+            }
+
+            
+        }
+
+        function clck(){
+        var a=document.getElementById('taim');
+        var d=new Date();
+        var hr=prefix(d.getHours());
+        var min=prefix(d.getMinutes());
+        var sc=prefix(d.getSeconds());
+        var dy=week(d.getDay()-1);
+        
+        //var weak=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"]
+        
+        a.innerHTML=hr+" : "+min+" : "+sc
+        setTimeout(clck,1000)
+      
+    }
+    function week(n){
+        var w = document.getElementsByClassName('wk');
+         w[n].setAttribute("class", "clr wk");
+        //w[n].style.color ="red";
+
+    }
+    function prefix(n){
+        if(n<10){
+            return "0"+n
+        }
+        else{
+            return n;
+        }
+    }
+       
+    </script>
+</body>
+</html>
